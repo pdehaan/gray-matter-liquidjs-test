@@ -1,0 +1,12 @@
+---
+title: Tweet embed page
+layout: layouts/base
+permalink: "tweets/{{ tweet.id }}/embed.html"
+---
+
+{% block content %}
+  <section>
+    <h2>Tweet embed</h2>
+    {% render "tweet-card", tweet: tweet %}
+  </section>
+{% endblock %}

@@ -1,0 +1,13 @@
+---
+title: Tweet page
+layout: layouts/base
+# dynamic permalinks!
+permalink: "tweets/{{ tweet.id }}/index.html"
+---
+
+{% block content %}
+  <section>
+    <h2>Tweet details</h2>
+    {% render "tweet-card", tweet: tweet %}
+  </section>
+{% endblock %}

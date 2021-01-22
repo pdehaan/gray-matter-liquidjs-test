@@ -1,0 +1,20 @@
+---
+title: Home page
+layout: layouts/base
+permalink: home.html
+---
+
+{% block content %}
+  <article>
+    <header>
+      {% comment %} data from front-matter {% endcomment %}
+      <h1>{{ title }}</h1>
+      <p>Subtitle</p>
+      {% comment %} global data {% endcomment %}
+      <p>Author: {{ pkg.author }}</p>
+    </header>
+    <section>
+      <p>Some wild content appears!</p>
+    </section>
+  </article>
+{% endblock %}

@@ -1,0 +1,13 @@
+<blockquote data-retweet="{{ tweet.isRetweet }}" data-deleted="{{ tweet.isDeleted }}" data-flagged="{{ tweet.isFlagged }}">
+  <p>{{ tweet.text | autoLink | newline_to_br }}</p>
+</blockquote>
+<p>Date: {{ tweet.date }}</p>
+<p>Retweets: {{ tweet.retweets | numberFormat }}</p>
+{% if tweet.favorites > 0 %}
+<p>Favorites: {{ tweet.favorites | numberFormat }}</p>
+{% endif %}
+<p>Tweet id: {{ tweet.id }}</p>
+<p>Device: {{ tweet.device }}</p>
+<p>Retweet: {{ tweet.isRetweet | capitalize }}</p>
+<p>Deleted: {{ tweet.isDeleted | capitalize }}</p>
+<p>Flagged: {{ tweet.isFlagged | capitalize }}</p>
