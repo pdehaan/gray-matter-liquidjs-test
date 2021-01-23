@@ -4,12 +4,14 @@ const path = require("path");
 const matter = require("gray-matter");
 const { Liquid } = require("liquidjs");
 
-const pkg = require("./package.json");
+const _globals = require("./_data/.globals");
 
 const engine = new Liquid({
   extname: ".liquid",
   root: path.resolve(__dirname, "views"),
-  globals: { pkg },
+  globals: {
+    ..._globals,
+  },
 });
 
 const tmplCache = new Map();
@@ -63,6 +65,9 @@ module.exports = {
  * @returns {Template} A cached version of the specified template, which has been parsed for front-matter and content.
  */
 async function getTemplate(filepath = "") {
+  // TODO: Should this actually parse the template w/ gray-matter? Or just return
+  // the raw template and let the caller do the parsing? Might remove the need to
+  // destructure the return object to avoid loop cross-contamination.
   let page;
   if (tmplCache.has(filepath)) {
     page = tmplCache.get(filepath);
@@ -77,9 +82,9 @@ async function getTemplate(filepath = "") {
 }
 
 /**
- * 
+ *
  * @param {string} outputPath File name and path to output the template's content.
- * @param {string} content Content 
+ * @param {string} content Content
  */
 async function writeFile(outputPath = "", content = "") {
   const $outputPath = path.join(__dirname, outputPath);
